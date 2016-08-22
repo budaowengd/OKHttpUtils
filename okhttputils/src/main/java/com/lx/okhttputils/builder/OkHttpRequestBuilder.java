@@ -1,8 +1,10 @@
 package com.lx.okhttputils.builder;
 
 
+import com.lx.okhttputils.OkHttpUtils;
 import com.lx.okhttputils.request.RequestCall;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ public abstract class OkHttpRequestBuilder<T extends OkHttpRequestBuilder> {
     public OkHttpRequestBuilder(){}
     public OkHttpRequestBuilder(String url) {
         this.url = url;
+        addCommonHeaderAndParams();
     }
 
     public T id(int id) {
@@ -47,6 +50,24 @@ public abstract class OkHttpRequestBuilder<T extends OkHttpRequestBuilder> {
         }
         headers.put(key, val);
         return (T) this;
+    }
+
+    /**
+     * 添加全局请求头或者请求参数
+     */
+    protected void addCommonHeaderAndParams() {
+        if (OkHttpUtils.sParams != null) {
+            if(params==null){
+                params=new LinkedHashMap<>();
+            }
+            params.putAll(OkHttpUtils.sParams);
+        }
+        if (OkHttpUtils.sHeaders != null) {
+            if(headers==null){
+                headers=new LinkedHashMap<>();
+            }
+            headers.putAll(OkHttpUtils.sHeaders);
+        }
     }
 
     public abstract RequestCall build();

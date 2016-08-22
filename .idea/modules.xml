@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyOkHttpUtils.iml" filepath="$PROJECT_DIR$/MyOkHttpUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OKHttpUtils-Lx_master.iml" filepath="$PROJECT_DIR$/OKHttpUtils-Lx_master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttputils/okhttputils.iml" filepath="$PROJECT_DIR$/okhttputils/okhttputils.iml" />
     </modules>

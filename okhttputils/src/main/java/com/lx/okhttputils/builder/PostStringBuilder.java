@@ -12,7 +12,9 @@ import okhttp3.MediaType;
 public class PostStringBuilder extends OkHttpRequestBuilder<PostStringBuilder> {
     private String content;
     private MediaType mediaType;
-
+    public PostStringBuilder(String url) {
+        super(url);
+    }
 
     public PostStringBuilder content(String content) {
         this.content = content;

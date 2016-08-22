@@ -12,6 +12,8 @@ import com.lx.okhttputils.request.RequestCall;
 import com.lx.okhttputils.utils.Platform;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 
 import okhttp3.Call;
@@ -49,6 +51,56 @@ public class OkHttpUtils {
         return mInstance;
     }
 
+    /**
+     * 添加全局请求头
+     */
+    public static Map<String, String> sHeaders;
+
+    public static boolean addCommonHeaders(Map<String, String> headers) {
+        if (sHeaders == null) {
+            sHeaders = new HashMap<>();
+        }
+        if (headers != null && !headers.isEmpty()) {
+            sHeaders.putAll(headers);
+        }
+        return true;
+    }
+
+    /**
+     * 添加全局请求参数
+     */
+    public static Map<String, String> sParams;
+    public static boolean addCommonParams(Map<String, String> params) {
+        if (sParams == null) {
+            sParams = new HashMap<>();
+        }
+        if (params != null && !params.isEmpty()) {
+            sParams.putAll(params);
+        }
+        return true;
+    }
+
+    /**
+     * 清除全局请求参数
+     */
+    public static void clearCommonParams() {
+        if (sParams != null){
+            sParams.clear();
+            sParams = null;
+        }
+    }
+
+    /**
+     * 清除全局请求头
+     */
+    public static void clearCommonHeaders() {
+        if (sHeaders != null){
+            sHeaders.clear();
+            sHeaders = null;
+        }
+    }
+
+
     public static OkHttpUtils getInstance() {
         return initClient(null);
     }
@@ -72,8 +124,8 @@ public class OkHttpUtils {
     /**
      * post   String
      */
-    public static PostStringBuilder postString() {
-        return new PostStringBuilder();
+    public static PostStringBuilder postString(String url) {
+        return new PostStringBuilder(url);
     }
 
     /**
@@ -110,7 +162,7 @@ public class OkHttpUtils {
      * 执行一个任务
      */
     public void execute(final RequestCall requestCall, Callback callback) {
-        if (callback == null){
+        if (callback == null) {
             callback = Callback.CALLBACK_DEFAULT;
         }
         final Callback finalCallback = callback;

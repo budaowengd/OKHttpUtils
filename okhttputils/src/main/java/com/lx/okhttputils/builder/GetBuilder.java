@@ -2,9 +2,11 @@ package com.lx.okhttputils.builder;
 
 import android.net.Uri;
 
+import com.lx.okhttputils.OkHttpUtils;
 import com.lx.okhttputils.request.GetRequest;
 import com.lx.okhttputils.request.RequestCall;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,7 +15,7 @@ import java.util.Set;
 /**
  * Created by luoXiong on 16/08/08.
  */
-public class GetBuilder extends OkHttpRequestBuilder<GetBuilder>{
+public class GetBuilder extends OkHttpRequestBuilder<GetBuilder> {
 
     @Override
     public RequestCall build() {
@@ -22,10 +24,14 @@ public class GetBuilder extends OkHttpRequestBuilder<GetBuilder>{
         }
         return new GetRequest(url, tag, params, headers, id).build();
     }
-    public GetBuilder(){}
-    public GetBuilder(String url){
+
+    public GetBuilder() {
+    }
+
+    public GetBuilder(String url) {
         super(url);
     }
+
     protected String appendParams(String url, Map<String, String> params) {
         if (url == null || params == null || params.isEmpty()) {
             return url;
