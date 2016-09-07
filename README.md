@@ -3,6 +3,13 @@
 
 ### 封装了okhttp的网络框架，
 
+##使用方法
+* 通过Android studio导入
+	```
+	 compile 'com.lx:okhttputils:1.0.1'
+	 
+	```
+
 该项目参考了以下项目：
 
  * [https://github.com/wyouflf/xUtils](https://github.com/wyouflf/xUtils) 
@@ -26,14 +33,11 @@
 * 支持自定义Callback
 * 支持HEAD、DELETE、PATCH、PUT
 * 支持session的保持
-* 支持自签名网站https的访问，提供方法设置下证书就
-## 使用方法
-1、通过Android studio导入
-	```
-	compile 'com.zhy:okhttputils:2.6.2'
-	```
-2、配置Application
-```
+* 支持自签名网站https的访问，提供方法设置下证书
+* 使用方法
+
+配置Application
+
 @Override
     public void onCreate() {
         super.onCreate();
