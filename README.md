@@ -3,11 +3,11 @@
 
 ### 封装了okhttp的网络框架，
 
-##使用方法
+##导入
 * 通过Android studio导入
+  
 	```
-	 compile 'com.lx:okhttputils:1.0.1'
-	 
+	 compile 'com.lx:okhttputils:1.0.1
 	```
 
 该项目参考了以下项目：
@@ -36,9 +36,10 @@
 * 支持自签名网站https的访问，提供方法设置下证书
 * 使用方法
 
-配置Application
-
-@Override
+#1、配置Application
+``` 
+    
+    @Override
     public void onCreate() {
         super.onCreate();
         //初始化OkHttpClient构造器
@@ -71,15 +72,18 @@
         OkHttpUtils.addCommonHeaders(headers);  //添加公共头
         //---------------------------------------------------------//
     }
+
 ```
-###1、get请求
-```java
-   OkHttpUtils
-         .get("https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13714913940")
+
+##2、get请求
+```
+
+         OkHttpUtils.get("https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13714913940")
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
+
                     }
                     @Override
                     //response 服务器返回
@@ -88,8 +92,10 @@
                     }
                 });
 ```
+
 ###2、post表单请求
 ```
+
      OkHttpUtils.post("https://tcc.taobao.com/cc/json/mobile_tel_segment.htm")
                 .params("tel","13714913940")//表单
                 .params(null)//表单，可以传递Map
@@ -110,6 +116,7 @@
 ```
 ###3、post String请求
 ```
+
     OkHttpUtils.postString("www.github.com")
                 .headers("key", "value") //请求头
                 .mediaType(null)
@@ -124,12 +131,13 @@
 
             }
         });
+
 ```
 ###4、下载文件
 
-```java
- OkHttpUtils//
-	.get()//
+```
+
+	OkHttpUtils.get()//
 	.url(url)//
 	.build()//
 	.execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "gson-2.2.1.jar")//
@@ -155,23 +163,24 @@
 ```
 
 注意下载文件可以使用`FileCallback`，需要传入文件需要保存的文件夹以及文件名。
+
 ###5、上传下载的进度显示
 
-```
-...
-new Callback<T>()
-{
-    //...
-    @Override
-    public void inProgress(float progress)
-    {
-       //use progress: 0 ~ 1
-    }
-}
-```
+``` 
+
+	new Callback<T>() {
+	    @Override
+	    public void inProgress(float progress)
+	    {
+	       //use progress: 0 ~ 1
+	    }
+	}
+
+``` 
 ### 6、取消单个请求
 
-```java
+``` 
+
  RequestCall call = OkHttpUtils.get().url(url).build();
  call.cancel();
 
@@ -200,7 +209,7 @@ protected void onDestroy()
 }
 ```
 比如，当前Activity页面所有的请求以Activity对象作为tag，可以在onDestory里面统一取消。
-## 混淆
+## 需要混淆的话，添加以下代码到混淆文件中
 
 ```
 #okhttputils
